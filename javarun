@@ -1,0 +1,17 @@
+#!/bin/bash
+# Source environment config file
+source config
+
+# Compile and run the application
+javac -d bin/classes src/$PACKAGE/*.java
+java -classpath bin/classes $PACKAGE.$MAIN_CLASS
+
+# use --clear to remove all the compiled files
+while [ "$1" != "" ]; do
+	case $1 in
+	--clear)
+		rm -rf bin/classes/$PACKAGE/*
+		;;
+	esac
+	shift
+done
